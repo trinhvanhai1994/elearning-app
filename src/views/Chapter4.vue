@@ -1,36 +1,48 @@
 <template>
   <div>
     <textarea v-model="englishText" rows="4" cols="50"></textarea>
-    <button @click="translateAndShow()">Dịch sang tiếng Việt</button>
+    <button @click="translateAndShowEn()">Dịch sang tiếng Việt</button>
+    <button @click="translateAndShowVi()">Dịch sang tiếng Anh</button>
     <div></div>
-    <button @click="speak()">Phát âm</button>
+    <button @click="speakEn()">Phát âm</button>
     <div class="mt-4">
-      <p>{{ vietnameseText }}</p>
+      <p>{{ vietnameseTextResponse }}</p>
+      <p>{{ englishTextResponse }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { translateText } from "../utils/translation.js";
-import { textToSpeech } from "../utils/speechText.js";
+import { translateTextEn } from "../utils/en/translation.js";
+import { textToSpeechEn } from "../utils/en/speechText.js";
+
+import { translateTextVi } from "../utils/vi/translation.js";
 
 export default {
   data() {
     return {
       englishText: "",
-      vietnameseText: ""
+      vietnameseTextResponse: "",
+      englishTextResponse: ""
     };
   },
   methods: {
-    async translateAndShow() {
+    async translateAndShowEn() {
       try {
-        this.vietnameseText = await translateText("englishText");
+        this.vietnameseTextResponse = await translateTextEn("englishText");
       } catch (error) {
-        // Xử lý lỗi nếu cần
+
       }
     },
-    speak() {
-			textToSpeech("englishText");
+    async translateAndShowVi() {
+      try {
+        this.englishTextResponse = await translateTextVi("em bé ngốc");
+      } catch (error) {
+
+      }
+    },
+    async speakEn() {
+			textToSpeechEn("englishText");
 		}
   }
 };

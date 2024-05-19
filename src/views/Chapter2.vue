@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { textToSpeech } from "../utils/speechText.js";
+import { textToSpeechEn } from "../utils/en/speechText.js";
 
 export default {
 	data() {
@@ -16,7 +16,7 @@ export default {
 	},
   	methods: {
 		speak() {
-			textToSpeech(this.textToSpeak);
+			textToSpeechEn(this.textToSpeak);
 		}
 	}
 };

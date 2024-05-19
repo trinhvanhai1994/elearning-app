@@ -4,25 +4,28 @@
 		<h3>Chương 1. Từ loại (Parts of speech)</h3>
 		<button class="btn btn-success" @click="speak($event.target.innerText)">Parts of speech</button>
 		<div v-if="isDisabled">
-			This is the content of the div.
+			<p>{{ englishTextResponse }}</p>
 		</div>
 	</main>
 </template>
 
 <script>
-import { textToSpeech } from "../utils/speechText.js";
+import { textToSpeechEn } from "../utils/en/speechText.js";
+import { translateTextEn } from "../utils/en/translation.js";
 
 export default {
 	data() {
 		return {
-			isDisabled: false
+			isDisabled: false,
+			englishTextResponse: ""
 		};
 	},
   	methods: {
-		speak(text) {
-			textToSpeech(text);
+		async speak(text) {
+			textToSpeechEn(text);
+			this.englishTextResponse = await translateTextEn(text);
 			this.isDisabled = true;
 		}
-  }
+  	}
 };
 </script>
