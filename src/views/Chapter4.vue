@@ -29,20 +29,20 @@ export default {
   methods: {
     async translateAndShowEn() {
       try {
-        this.vietnameseTextResponse = await translateTextEn("englishText");
+        this.vietnameseTextResponse = await translateTextEn(this.englishText);
       } catch (error) {
 
       }
     },
     async translateAndShowVi() {
       try {
-        this.englishTextResponse = await translateTextVi("em bé ngốc");
+        this.englishTextResponse = await translateTextVi(this.englishText);
       } catch (error) {
 
       }
     },
     async speakEn() {
-			textToSpeechEn("englishText");
+			textToSpeechEn(this.englishText);
 		}
   }
 };
